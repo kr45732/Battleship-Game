@@ -1,4 +1,4 @@
-# Battleship-Game
+# Battleship-Game \n
 This game is meant to replicate Hasbro's Battleship game
 This is currently a work in progress- It is only player against computer
 ** Important note!! - Don't press any keys (like enter) if not prompted **
