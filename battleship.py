@@ -4,12 +4,15 @@ import random as r
 import colorama
 from colorama import Fore, Style
 
+
 def clear():
+    """Clear the shell/output"""
     clr = os.system("clear")
     clr
 
 
 def player_board():
+    """Print out the player board with the symbol definitions"""
     print("   1  2  3  4  5  6  7  8  9")
     counter = 0
     for i in plr_board:
@@ -21,6 +24,7 @@ def player_board():
 
 
 def computer_board():
+    """Print out the computer board. Used for testing purposes"""
     print("   1  2  3  4  5  6  7  8  9")
     counter2 = 0
     for i in comp_board:
@@ -32,6 +36,7 @@ def computer_board():
 
 
 def opponent_board():
+    """Print out the board the player sees their hits and misses. Used for testing purposes"""
     print("   1  2  3  4  5  6  7  8  9")
     counter3 = 0
     for i in opp_board:
@@ -43,6 +48,12 @@ def opponent_board():
 
 
 def check_vaild(input1, input2, size):
+    """
+    Checks is the ship coordinates are valid if the ship is placed verticaly
+    input1 is the first coordinate of the ship
+    input2 is the second coordinate of the ship
+    size is the size of the ship
+    """
     values = {
         "val_a": 1,
         "val_b": 2,
@@ -67,6 +78,12 @@ def check_vaild(input1, input2, size):
 
 
 def deploy_fleet(cord1, cord2, name):
+    """
+    Edit the players board with the ship the player deployed
+    cord1 is the first coordinate of the ship
+    cord2 is the second coordinate of the ship
+    name is the symbol that is used to represent the ship
+    """
     val = {
         "A": 0,
         "B": 10,
@@ -111,6 +128,11 @@ def deploy_fleet(cord1, cord2, name):
 
 
 def find_larger(input1, input2):
+    """
+    Finds which of the two coordinates of the ship are larger (further away from the top)
+    input1 is the first coordinate of the ship
+    input2 is the second coordinate of the ship
+    """
     values = {
         "val_A": 1,
         "val_B": 2,
@@ -130,6 +152,11 @@ def find_larger(input1, input2):
 
 
 def check_valid3(cord1, cord2):
+    """ 
+    This checks if the players ship, using cord1 and cord2, is trying to be placed in the way of another ship
+    cord1 is the first coordinate of the ship
+    cord2 is the second coordinate of the ship
+    """
     val = {
         "A": 0,
         "B": 10,
@@ -184,6 +211,11 @@ def check_valid3(cord1, cord2):
 
 
 def check_valid2(cord1, cord2):
+    """ 
+    This checks if the computers ship, using cord1 and cord2, is trying to be placed in the way of another ship
+    cord1 is the first coordinate of the ship
+    cord2 is the second coordinate of the ship
+    """
     val = {
         "A": 0,
         "B": 10,
@@ -238,6 +270,17 @@ def check_valid2(cord1, cord2):
 
 
 def deploy_x(x_deployed, x_c1, x_c2, x_length, x_symbol, x_name):
+    """
+    This is the deploy function for the player
+    
+    More detail comming soon...
+
+    x_c1 is the first coordinate of the ship
+    x_c2 is the second coordinate of the ship
+    x_length is the length of the ship
+    x_symbol is the symbol of the ship
+    x_name is what the ship is called
+    """
     x_length -= 1
     while x_deployed == False:
         x_length += 1
@@ -284,6 +327,12 @@ def deploy_x(x_deployed, x_c1, x_c2, x_length, x_symbol, x_name):
 
 
 def deploy_fleet_comp(cord1, cord2, name):
+    """
+    Edit the computers board with the ship the computer deployed
+    cord1 is the first coordinate of the ship
+    cord2 is the second coordinate of the ship
+    name is the symbol that is used to represent the ship
+    """
     val = {
         "A": 0,
         "B": 10,
@@ -329,6 +378,18 @@ def deploy_fleet_comp(cord1, cord2, name):
 
 
 def deploy_x_comp(x_deployed, x_c1_comp, x_c2_comp, x_length, x_symbol, x_name):
+    """
+    This is the deploy function for the computer
+    
+    More detail comming soon...
+
+    x_deployed is if the ship has been deployed/placed on the board
+    x_c1_comp is the first coordinate of the ship
+    x_c2_comp is the second coordinate of the ship
+    x_length is the length of the ship
+    x_symbol is the symbol of the ship
+    x_name is what the ship is called
+    """
     x_length -= 1
     while x_deployed == False:
         x_length += 1
@@ -353,6 +414,7 @@ def deploy_x_comp(x_deployed, x_c1_comp, x_c2_comp, x_length, x_symbol, x_name):
 
 
 def greet_player():
+    """ Just the starting greeting for the player"""
     clear()
     print("Welcome to battle ship!")
     t.sleep(1)
@@ -365,6 +427,10 @@ def greet_player():
 
 
 def get_index(cord):
+    """ 
+    Gets the index of the cordinate
+    cord is the coordinate
+    """
     val = {
         "A": 0,
         "B": 10,
@@ -386,16 +452,9 @@ def get_index(cord):
 
 
 def update_board():
-    global carrier_sunken
-    global carrier_sunken_comp
-    global battleship_sunken
-    global battleship_sunken_comp
-    global cruiser_sunken
-    global cruiser_sunken_comp
-    global submarine_suken
-    global submarine_suken_comp
-    global destroyer_sunken
-    global destroyer_sunken_comp
+    """Checks if any of the ships are sunken, for the player and computer. If so prints, it will print the ships name out"""
+    global carrier_sunken, battleship_sunken, cruiser_sunken, submarine_suken, destroyer_sunken
+    global carrier_sunken_comp, battleship_sunken_comp, cruiser_sunken_comp, submarine_suken_comp, destroyer_sunken_comp
     if (
         "  C" not in comp_board[0:20] and "  C" not in comp_board[21:]
     ) and carrier_sunken_comp == False:
@@ -544,7 +603,7 @@ plr_board = [
     "  _",
     "  _",
     "  _",
-]
+]  # Players board
 opp_board = [
     "A",
     "  _",  # A1
@@ -636,7 +695,7 @@ opp_board = [
     "  _",
     "  _",
     "  _",
-]
+]  # Board that the player sees their hits and misses
 comp_board = [
     "A",
     "  _",  # A1
@@ -728,7 +787,7 @@ comp_board = [
     "  _",
     "  _",
     "  _",
-]
+]  # Computers board
 
 cells = [
     "A1",
@@ -812,124 +871,109 @@ cells = [
     "I7",
     "I8",
     "I9",
-]
-comp_used_cells = []
+]  # Cells that the computer can choose from when attacking the player
+
 plr_used_cells = []
+
+# _____ Greet the player _____
 greet_player()
 
-fleet_deployed = False
+# _____ Player deployed booleans _____
+carrier_deployed = False
+battleship_deployed = False
+cruiser_deployed = False
+submarine_deployed = False
+destroyer_deployed = False
 
-while fleet_deployed == False:
+# _____ Computer deployed booleans _____
+carrier_deployed_comp = False
+battleship_deployed_comp = False
+cruiser_deployed_comp = False
+submarine_deployed_comp = False
+destroyer_deployed_comp = False
 
-    carrier_deployed = False
-    battleship_deployed = False
-    cruiser_deployed = False
-    submarine_deployed = False
-    destroyer_deployed = False
+# _________ Deploy player ships __________
+carrier_c1 = ""
+carrier_c2 = ""
+deploy_x(carrier_deployed, carrier_c1, carrier_c2, 5, "C", "carrier")
 
-    # _____ Computer booleans_____
-    carrier_deployed_comp = False
-    battleship_deployed_comp = False
-    cruiser_deployed_comp = False
-    submarine_deployed_comp = False
-    destroyer_deployed_comp = False
+battleship_c1 = ""
+battleship_c2 = ""
+deploy_x(battleship_deployed, battleship_c1, battleship_c2, 4, "B", "battleship")
 
-    # _____ Player fleet _____
-    carrier_c1 = ""
-    carrier_c2 = ""
-    deploy_x(carrier_deployed, carrier_c1, carrier_c2, 5, "C", "carrier")
+cruiser_c1 = ""
+cruiser_c2 = ""
+deploy_x(cruiser_deployed, cruiser_c1, cruiser_c2, 3, "R", "cruiser")
 
-    battleship_c1 = ""
-    battleship_c2 = ""
-    deploy_x(battleship_deployed, battleship_c1, battleship_c2, 4, "B", "battleship")
+submarine_c1 = ""
+submarine_c2 = ""
+deploy_x(submarine_deployed, submarine_c1, submarine_c2, 3, "S", "submarine")
 
-    cruiser_c1 = ""
-    cruiser_c2 = ""
-    deploy_x(cruiser_deployed, cruiser_c1, cruiser_c2, 3, "R", "cruiser")
+destroyer_c1 = ""
+destroyer_c2 = ""
+deploy_x(destroyer_deployed, destroyer_c1, destroyer_c2, 2, "D", "destroyer")
+clear()
 
-    submarine_c1 = ""
-    submarine_c2 = ""
-    deploy_x(submarine_deployed, submarine_c1, submarine_c2, 3, "S", "submarine")
-
-    destroyer_c1 = ""
-    destroyer_c2 = ""
-    deploy_x(destroyer_deployed, destroyer_c1, destroyer_c2, 2, "D", "destroyer")
-    clear()
-    print("Your fleet has been deployed!")
-    print("Generating computer fleet!")
-    t.sleep(1.5)
-
-    # _________ Computer __________
-    carrier_c1_comp = ""
-    carrier_c2_comp = ""
-    deploy_x_comp(
-        carrier_deployed_comp, carrier_c1_comp, carrier_c2_comp, 5, "C", "carrier"
-    )
-
-    battleship_c1_comp = ""
-    battleship_c2_comp = ""
-    deploy_x_comp(
-        battleship_deployed_comp,
-        battleship_c1_comp,
-        battleship_c2_comp,
-        4,
-        "B",
-        "battleship",
-    )
-
-    cruiser_c1_comp = ""
-    cruiser_c2_comp = ""
-    deploy_x_comp(
-        cruiser_deployed_comp, cruiser_c1_comp, cruiser_c2_comp, 3, "R", "cruiser"
-    )
-
-    submarine_c1_comp = ""
-    submarine_c2_comp = ""
-    deploy_x_comp(
-        submarine_deployed_comp,
-        submarine_c1_comp,
-        submarine_c2_comp,
-        3,
-        "S",
-        "submarine",
-    )
-
-    destroyer_c1_comp = ""
-    destroyer_c2_comp = ""
-    deploy_x_comp(
-        destroyer_deployed_comp,
-        destroyer_c1_comp,
-        destroyer_c2_comp,
-        2,
-        "D",
-        "destroyer",
-    )
-
-    print("Computer fleet has been deployed")
-    t.sleep(1.5)
-    fleet_deployed = True
+# _________ Deploy computer ships __________
+print("Your fleet has been deployed!")
+print("Generating computer fleet!")
+t.sleep(1.5)
+carrier_c1_comp = ""
+carrier_c2_comp = ""
+deploy_x_comp(
+    carrier_deployed_comp, carrier_c1_comp, carrier_c2_comp, 5, "C", "carrier"
+)
+battleship_c1_comp = ""
+battleship_c2_comp = ""
+deploy_x_comp(
+    battleship_deployed_comp,
+    battleship_c1_comp,
+    battleship_c2_comp,
+    4,
+    "B",
+    "battleship",
+)
+cruiser_c1_comp = ""
+cruiser_c2_comp = ""
+deploy_x_comp(
+    cruiser_deployed_comp, cruiser_c1_comp, cruiser_c2_comp, 3, "R", "cruiser"
+)
+submarine_c1_comp = ""
+submarine_c2_comp = ""
+deploy_x_comp(
+    submarine_deployed_comp, submarine_c1_comp, submarine_c2_comp, 3, "S", "submarine"
+)
+destroyer_c1_comp = ""
+destroyer_c2_comp = ""
+deploy_x_comp(
+    destroyer_deployed_comp, destroyer_c1_comp, destroyer_c2_comp, 2, "D", "destroyer"
+)
+print("Computer fleet has been deployed")
+t.sleep(1.5)
 
 
-# ____ Init player booleans if ships are sunken
+# Boolean for whether player ships have been sunk
 carrier_sunken = False
 battleship_sunken = False
 cruiser_sunken = False
 submarine_suken = False
 destroyer_sunken = False
 
-# ____ Init computer booleans if ships are sunken
+# Boolean for whether computer ships have been sunk
 carrier_sunken_comp = False
 battleship_sunken_comp = False
 cruiser_sunken_comp = False
 submarine_suken_comp = False
 destroyer_sunken_comp = False
 
+# Loop that runs the game (the attacking part)
 while True:
     clear()
     print("Your board: ")
     player_board()
     print("\nOpponents board")
     opponent_board()
+    # ______ Players's turn ______
     while True:
         # ______ Players turn ______
         attack_cords = input("Input coordinates (E.g. A1): ")
@@ -952,12 +996,11 @@ while True:
             print(Style.RESET_ALL)
             print(Fore.YELLOW + "Invalid coordinates")
             print(Style.RESET_ALL)
-
     print("Launching missile!\t (X- Hit   O- Miss)")
     index_of_attack = get_index(attack_cords)
     opp_board.pop(index_of_attack)
     plr_used_cells.append(attack_cords)
-    if comp_board[index_of_attack] != "  _":
+    if comp_board[index_of_attack].strip() != "_":
         opp_board.insert(index_of_attack, "  X")
         print(Style.RESET_ALL)
         print(Fore.RED + "You hit a ship at " + attack_cords + "!")
@@ -973,7 +1016,6 @@ while True:
     t.sleep(2.25)
     print("\nUpdated opponents board: ")
     opponent_board()
-    update_board()
     if (
         carrier_sunken_comp
         and battleship_sunken_comp
@@ -983,25 +1025,21 @@ while True:
     ):
         t.sleep(1.5)
         break
-    t.sleep(1.5)
+    t.sleep(2.15)
     clear()
     # ______ Computer's turn ______
     print("Computers turn!")
-    while True:
-        attack_cords_comp = r.choice(cells)
-        if attack_cords_comp not in comp_used_cells:
-            break
-    comp_used_cells.append(attack_cords_comp)
+    attack_cords_comp = r.choice(cells)
+    cells.remove(attack_cords_comp)
     index_of_attack_comp = get_index(attack_cords_comp)
-    plr_board.pop(index_of_attack_comp)
-    if plr_board[index_of_attack_comp] != "  _":
+    if plr_board[index_of_attack_comp].strip() != "_":
+        plr_board.pop(index_of_attack_comp)
         plr_board.insert(index_of_attack_comp, "  X")
         print(Style.RESET_ALL)
         print(Fore.RED + "The computer hit a ship at " + attack_cords_comp + "!")
         print(Style.RESET_ALL)
         update_board()
     else:
-        plr_board.insert(index_of_attack_comp, "  _")
         print(Style.RESET_ALL)
         print(Fore.RED + "The computer missed at " + attack_cords_comp)
         print(Style.RESET_ALL)
