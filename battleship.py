@@ -129,7 +129,7 @@ def deploy_fleet(cord1, cord2, name):
 
 def find_larger(input1, input2):
     """
-    Finds which of the two coordinates of the ship are larger (further away from the top)
+    Finds which of the two coordinates of the ship are larger (further from the top)
     input1 is the first coordinate of the ship
     input2 is the second coordinate of the ship
     """
@@ -209,6 +209,20 @@ def check_valid3(cord1, cord2):
                 break
     return return_val
 
+def check_valid4(cord1, cord2):
+    """
+    Checks if the ship is all in the same row or same column
+    cord1 is the first coordinate of the ship
+    cord2 is the second coordinate of the ship
+    """
+    row1 = cord1[0]
+    row2 = cord2[0]
+    num1 = int(cord1[1])
+    num2 = int(cord2[1])
+    if row1==row2 or num1==num2:
+        return True
+    else:
+        return False
 
 def check_valid2(cord1, cord2):
     """ 
@@ -299,7 +313,7 @@ def deploy_x(x_deployed, x_c1, x_c2, x_length, x_symbol, x_name):
             if (
                 (cc2 - cc1 == x_length or cc1 - cc2 == x_length)
                 or check_vaild(x_c1, x_c2, x_length)
-            ) and check_valid3(x_c1, x_c2):
+            ) and check_valid3(x_c1, x_c2) and check_valid4(x_c1, x_c2):
                 deploy_fleet(x_c1, x_c2, x_symbol)
                 print(Style.RESET_ALL)
                 print(Fore.RED + x_name.title() + " deployed!")
@@ -1045,11 +1059,11 @@ while True:
         print(Style.RESET_ALL)
     t.sleep(2.25)
     if (
-        carrier_sunken
-        and battleship_sunken
-        and cruiser_sunken
-        and submarine_suken
-        and destroyer_sunken
+        carrier_sunken_comp
+        and battleship_sunken_comp
+        and cruiser_sunken_comp
+        and submarine_suken_comp
+        and destroyer_sunken_comp
     ):
         break
 
